@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "224093643752",
+    "firebase_url": "https://top-gan.firebaseio.com",
+    "project_id": "top-gan",
+    "storage_bucket": "top-gan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224093643752:android:7af5ff1787e0ebdf",
+        "android_client_info": {
+          "package_name": "com.topgan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "224093643752-kjr2jj7l5f6dsolnd9k98elt1a73289i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJdec-tInst1LjVYw3xUnpylgJUU7bnwg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224093643752:android:2dcfb2c8a835d345",
+        "android_client_info": {
+          "package_name": "com.topgan.topgan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "224093643752-kjr2jj7l5f6dsolnd9k98elt1a73289i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJdec-tInst1LjVYw3xUnpylgJUU7bnwg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
