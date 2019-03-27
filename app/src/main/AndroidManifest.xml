@@ -16,6 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ChildDetailsScreen.ChildDetailsActivity" />
+        <activity android:name=".MessageParentsScreen.MessageParentsActivity"></activity>
     </application>
 
 </manifest>
