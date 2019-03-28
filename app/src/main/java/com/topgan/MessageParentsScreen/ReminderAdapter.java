@@ -1,13 +1,16 @@
 package com.topgan.MessageParentsScreen;
 
 import android.content.Context;
+import android.net.sip.SipSession;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.topgan.ItemClickListener;
 import com.topgan.R;
 
 import java.util.List;
@@ -15,11 +18,17 @@ import java.util.List;
 public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.MyViewHolder> {
     private List<Reminder> reminderList;
     private Context context;
+    public ItemClickListener listener;
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+
+
+
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder  {
         // each data item is just a string in this case
         public TextView tvTitle;
         public ImageView ivPhotoId, ivChecked;
+
 
         public MyViewHolder(View v) {
             super(v);
@@ -28,13 +37,15 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.MyView
             //tvRecurrence = itemView.findViewById(R.id.tvRecurrence);
             ivChecked = itemView.findViewById(R.id.ivChecked);
             ivPhotoId = itemView.findViewById(R.id.ivPhotoId);
+
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ReminderAdapter(List<Reminder> myDataset, Context context) {
+    public ReminderAdapter(List<Reminder> myDataset, Context context, ItemClickListener listener) {
         reminderList = myDataset;
         this.context = context;
+        this.listener = listener;
     }
 
     // Create new views (invoked by the layout manager)
@@ -50,13 +61,28 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.MyView
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         Reminder item = reminderList.get(position);
         if (item != null) {
 
             holder.tvTitle.setText(item.reminderTitle);
             //holder.tvRecurrence.setText(item.reminderRecurrence);
             holder.ivPhotoId.setImageResource(item.photoId);
+
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    listener.onLongClick(v, position);
+                    return false;
+                }
+            });
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onClick(v,position);
+                }
+            });
 
         }
     }
