@@ -18,14 +18,14 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.MyView
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public TextView tvTitle, tvReoccurance;
+        public TextView tvTitle;
         public ImageView ivPhotoId, ivChecked;
 
         public MyViewHolder(View v) {
             super(v);
 
             tvTitle = itemView.findViewById(R.id.tvReminderTitle);
-            tvReoccurance = itemView.findViewById(R.id.tvReoccurance);
+            //tvRecurrence = itemView.findViewById(R.id.tvRecurrence);
             ivChecked = itemView.findViewById(R.id.ivChecked);
             ivPhotoId = itemView.findViewById(R.id.ivPhotoId);
         }
@@ -55,7 +55,7 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.MyView
         if (item != null) {
 
             holder.tvTitle.setText(item.reminderTitle);
-            holder.tvReoccurance.setText(item.reminderRecurrence);
+            //holder.tvRecurrence.setText(item.reminderRecurrence);
             holder.ivPhotoId.setImageResource(item.photoId);
 
         }

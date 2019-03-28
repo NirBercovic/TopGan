@@ -65,7 +65,7 @@ public class MainScreenActivity extends AppCompatActivity {
         message2.setLastMessage("I forgot my coat");
 
         message3.setPrivateName("Snir");
-        message3.setLastName("Ozeri");
+        message3.setLastName("Ozery");
         message3.setLastMessage("Hey, are you there?");
 
         messages.add(message1);
