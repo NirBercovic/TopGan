@@ -55,22 +55,39 @@ public class MainScreenActivity extends AppCompatActivity {
         MessageItem message1 = new MessageItem();
         MessageItem message2 = new MessageItem();
         MessageItem message3 = new MessageItem();
+        MessageItem message4 = new MessageItem();
+        MessageItem message5 = new MessageItem();
 
         message1.setPrivateName("Nir");
         message1.setLastName("Bercovitz");
         message1.setLastMessage("Hey, what's up?");
+        message1.setId("test");
 
         message2.setPrivateName("Roee");
         message2.setLastName("Greenberg");
         message2.setLastMessage("I forgot my coat");
+        message2.setId("feoije43");
 
         message3.setPrivateName("Snir");
         message3.setLastName("Ozeri");
         message3.setLastMessage("Hey, are you there?");
+        message3.setId("fko409f09");
+
+        message4.setPrivateName("Yael");
+        message4.setLastName("Shavit");
+        message4.setLastMessage("Good night");
+        message4.setId("fko409f09");
+
+        message5.setPrivateName("Avishai");
+        message5.setLastName("Peretz");
+        message5.setLastMessage("Good morning all");
+        message5.setId("gj849jg4jg");
 
         messages.add(message1);
         messages.add(message2);
         messages.add(message3);
+        messages.add(message4);
+        messages.add(message5);
 
         return messages;
     }

@@ -1,6 +1,7 @@
 package com.topgan;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.topgan.ChildDetailsScreen.ChildDetailsActivity;
 import com.topgan.CommonData.MessageItem;
 
 import java.util.ArrayList;
@@ -76,14 +79,26 @@ public class MessageBaseAdapter extends RecyclerView.Adapter<MessageBaseAdapter.
             m_tv_time           = view.findViewById(R.id.tv_timeText);
             m_image             = view.findViewById(R.id.iv_smallIcon);
 
+
+
             view.setOnClickListener(this);
             view.setOnLongClickListener(this);
         }
 
-        public void onBindViewHolder(MessageItem message) {
+        public void onBindViewHolder(final MessageItem message) {
             m_tv_name.setText(message.getPrivateName() + " " + message.getLastName());
             m_tv_lastMessage.setText(message.getLastMessage());
             m_tv_time.setText("2222");
+
+            m_image.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+
+                    Intent childDetailsIntent = new Intent(m_context, ChildDetailsActivity.class);
+                    childDetailsIntent.putExtra("CHILD_ID", message.getId());
+                    m_context.startActivity(childDetailsIntent);
+                }
+            });
+
             /*if (!TextUtils.isEmpty(message.getSidePosterPath())) {
                 Picasso.get()
                         .load(movie.getSidePosterPath())
