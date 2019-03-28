@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+
 public class MessageBaseAdapter extends RecyclerView.Adapter<MessageBaseAdapter.ViewHolder> implements ItemClickListener {
 
     private LayoutInflater m_inflater;
@@ -102,7 +103,7 @@ public class MessageBaseAdapter extends RecyclerView.Adapter<MessageBaseAdapter.
                 public void onClick(View v) {
 
                     Intent childDetailsIntent = new Intent(m_context, ChildDetailsActivity.class);
-                    childDetailsIntent.putExtra("CHILD_ID", message.getId());
+                    childDetailsIntent.putExtra(Constants.CHILD_ID, message.getId());
                     m_context.startActivity(childDetailsIntent);
                 }
             });

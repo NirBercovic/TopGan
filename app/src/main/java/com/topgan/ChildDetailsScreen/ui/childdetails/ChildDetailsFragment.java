@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.topgan.ChildDetailsScreen.ChildDetailsActivity;
 import com.topgan.CommonData.Child;
+import com.topgan.Constants;
 import com.topgan.Database.DatabaseHandler;
 import com.topgan.R;
 
@@ -40,7 +41,7 @@ public class ChildDetailsFragment extends Fragment {
     public static ChildDetailsFragment newInstance(String childId) {
         ChildDetailsFragment fragment = new ChildDetailsFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("childId",childId );
+        bundle.putString(Constants.CHILD_ID, childId );
         fragment.setArguments(bundle);
 
         return fragment;
@@ -49,7 +50,7 @@ public class ChildDetailsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        childId = getArguments().getString("childId");
+        childId = getArguments().getString(Constants.CHILD_ID);
         Log.d(TAG, childId);
         return inflater.inflate(R.layout.child_details_fragment, container, false);
     }
