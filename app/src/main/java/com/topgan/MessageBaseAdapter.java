@@ -15,18 +15,22 @@ import com.topgan.ChildDetailsScreen.ChildDetailsActivity;
 import com.topgan.CommonData.MessageItem;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class MessageBaseAdapter extends RecyclerView.Adapter<MessageBaseAdapter.ViewHolder> implements ItemClickListener {
 
     private LayoutInflater m_inflater;
     private ArrayList<MessageItem> m_dataSource;
     private MainScreenActivity m_context;
+    private static Set<String> m_selectedIds;
 
     public MessageBaseAdapter(MainScreenActivity context, ArrayList<MessageItem> items)
     {
         m_dataSource            = items;
         m_inflater              = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         m_context               = context;
+        m_selectedIds           = new HashSet<>();
     }
 
     public void setItems(ArrayList<MessageItem> items) {
@@ -59,18 +63,18 @@ public class MessageBaseAdapter extends RecyclerView.Adapter<MessageBaseAdapter.
 
     @Override
     public void onLongClick(View view, int position) {
-
-        Toast.makeText(m_context, "onLongClick", Toast.LENGTH_SHORT).show();
-
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
         public final ImageView m_image;
+        public final ImageView m_selectIcon;
         public final TextView m_tv_name;
         public final TextView m_tv_lastMessage;
         public final TextView m_tv_time;
         private ItemClickListener itemClickListener;
+        public boolean m_itemSelected;
+        public String m_id;
 
         public ViewHolder(View view) {
             super(view);
@@ -78,8 +82,8 @@ public class MessageBaseAdapter extends RecyclerView.Adapter<MessageBaseAdapter.
             m_tv_lastMessage    = view.findViewById(R.id.tv_lastMessageText);
             m_tv_time           = view.findViewById(R.id.tv_timeText);
             m_image             = view.findViewById(R.id.iv_smallIcon);
-
-
+            m_selectIcon        = view.findViewById(R.id.iv_selectIcon);
+            m_itemSelected      = false;
 
             view.setOnClickListener(this);
             view.setOnLongClickListener(this);
@@ -89,6 +93,10 @@ public class MessageBaseAdapter extends RecyclerView.Adapter<MessageBaseAdapter.
             m_tv_name.setText(message.getPrivateName() + " " + message.getLastName());
             m_tv_lastMessage.setText(message.getLastMessage());
             m_tv_time.setText("2222");
+            m_id = message.getId();
+
+            m_selectIcon.setImageResource(R.drawable.select_icon);
+            m_selectIcon.setVisibility(View.INVISIBLE);
 
             m_image.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -117,17 +125,20 @@ public class MessageBaseAdapter extends RecyclerView.Adapter<MessageBaseAdapter.
 
         @Override
         public boolean onLongClick(View v) {
+            if (m_itemSelected) {
+                m_selectIcon.setVisibility(View.INVISIBLE);
+                m_selectedIds.remove(m_id);
+            }
+            else{
+                m_selectIcon.setVisibility(View.VISIBLE);
+                m_selectedIds.add(m_id);
+            }
+
+            m_itemSelected = !m_itemSelected;
             itemClickListener.onLongClick(v,getAdapterPosition());
             return true;
         }
 
     }
-
-
-
-
-
-
-
 
 }
