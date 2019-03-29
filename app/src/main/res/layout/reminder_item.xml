@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="2dp">
         <ImageView
@@ -40,8 +40,8 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
                 android:text="Reminder Title"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="20sp" />
+                android:textColor="@color/secondaryTextColor"
+                android:textSize="16sp" />
 
         </LinearLayout>
 

@@ -13,15 +13,17 @@ import android.widget.Toast;
 import com.topgan.ItemClickListener;
 import com.topgan.R;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.MyViewHolder> {
     private List<Reminder> reminderList;
     private Context context;
     public ItemClickListener listener;
 
-
-
+    private List<Reminder> reminderSelected;
 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder  {
@@ -38,6 +40,8 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.MyView
             ivChecked = itemView.findViewById(R.id.ivChecked);
             ivPhotoId = itemView.findViewById(R.id.ivPhotoId);
 
+
+
         }
     }
 
@@ -46,6 +50,7 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.MyView
         reminderList = myDataset;
         this.context = context;
         this.listener = listener;
+        reminderSelected = new ArrayList<>();
     }
 
     // Create new views (invoked by the layout manager)
@@ -62,7 +67,7 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.MyView
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        Reminder item = reminderList.get(position);
+        final Reminder item = reminderList.get(position);
         if (item != null) {
 
             holder.tvTitle.setText(item.reminderTitle);
@@ -72,7 +77,17 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.MyView
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
+
+                    if (holder.ivChecked.getVisibility() == View.INVISIBLE) {
+                        holder.ivChecked.setVisibility(View.VISIBLE);
+                        reminderSelected.add(item);
+
+                    } else {
+                        holder.ivChecked.setVisibility(View.INVISIBLE);
+                        reminderSelected.remove(item);
+                    }
                     listener.onLongClick(v, position);
+
                     return false;
                 }
             });
@@ -83,7 +98,6 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.MyView
                     listener.onClick(v,position);
                 }
             });
-
         }
     }
 
@@ -92,4 +106,10 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.MyView
     public int getItemCount() {
         return reminderList != null ? reminderList.size() : 0;
     }
+
+    public List<Reminder> getReminderSelected() {
+        return reminderSelected;
+    }
+
+
 }
