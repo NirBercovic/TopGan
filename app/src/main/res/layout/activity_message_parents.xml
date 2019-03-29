@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/primaryDarkColor"
+    android:background="@color/primaryColor"
     android:weightSum="1"
     tools:context=".MessageParentsScreen.MessageParentsActivity">
 
@@ -18,7 +18,7 @@
         android:layout_marginLeft="20dp"
         android:layout_weight="0.08"
         android:onClick="SendClicked"
-        android:background="@color/primaryDarkColor"
+        android:background="@color/primaryColor"
         android:src="@drawable/outline_arrow_back_white_18dp_large" />
 
     <!-- A RecyclerView with some commonly used attributes -->
@@ -26,7 +26,7 @@
         android:id="@+id/my_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.67"
+        android:layout_weight="0.77"
         android:background="#fafafa"
         android:scrollbars="vertical" />
 
@@ -45,17 +45,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#fafafa"
-            android:hint="הוסף הודעה" />
+            android:hint=" הוסף הודעה" />
 
     </LinearLayout>
-    <!-- Footer  -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1">
-        <include
-            layout="@layout/footer">
-        </include>
-    </LinearLayout>
+
 
 </LinearLayout>
