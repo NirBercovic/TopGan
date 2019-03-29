@@ -23,13 +23,27 @@ public class MessageBaseAdapter extends RecyclerView.Adapter<MessageBaseAdapter.
     private LayoutInflater m_inflater;
     private ArrayList<MessageItem> m_dataSource;
     private MainScreenActivity m_context;
-    
+    private String m_selected = "none";
+
     public MessageBaseAdapter(MainScreenActivity context, ArrayList<MessageItem> items)
     {
         m_dataSource            = items;
         m_inflater              = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         m_context               = context;
     }
+
+    public void chooseAllItems()
+    {
+        m_selected = "all";
+        notifyDataSetChanged();
+    }
+
+    public void chooseNoneItems()
+    {
+        m_selected = "none";
+        notifyDataSetChanged();
+    }
+
 
     public void setItems(ArrayList<MessageItem> items) {
         m_dataSource.clear();
@@ -99,6 +113,29 @@ public class MessageBaseAdapter extends RecyclerView.Adapter<MessageBaseAdapter.
             m_selectIcon.setImageResource(R.drawable.select_icon);
             m_selectIcon.setVisibility(View.INVISIBLE);
 
+            if (m_selected == "none")
+            {
+                m_itemSelected      = false;
+                m_context.m_selectedIds.remove(m_id);
+                m_selectIcon.setVisibility(View.INVISIBLE);
+
+            }
+            else
+            {
+                m_itemSelected      = true;
+                m_context.m_selectedIds.add(m_id);
+                m_selectIcon.setVisibility(View.VISIBLE);
+            }
+
+            if (m_context.m_selectedIds.isEmpty())
+            {
+                m_context.setVisable(false);
+            }
+            else
+            {
+                m_context.setVisable(true);
+            }
+
             m_image.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
 
@@ -130,6 +167,15 @@ public class MessageBaseAdapter extends RecyclerView.Adapter<MessageBaseAdapter.
             }
 
             m_itemSelected = !m_itemSelected;
+
+            if (m_context.m_selectedIds.isEmpty())
+            {
+                m_context.setVisable(false);
+            }
+            else
+            {
+                m_context.setVisable(true);
+            }
             itemClickListener.onLongClick(v,getAdapterPosition());
             return true;
         }
