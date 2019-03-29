@@ -22,6 +22,7 @@
         android:layout_weight="0.1"
         android:background="#ffffff"
         android:src="@drawable/outline_send_black_18dp_large" />
+
     <!-- A RecyclerView with some commonly used attributes -->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/my_recycler_view"

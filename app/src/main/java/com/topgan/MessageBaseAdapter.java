@@ -13,7 +13,10 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.topgan.ChildDetailsScreen.ChildDetailsActivity;
 import com.topgan.CommonData.MessageItem;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MessageBaseAdapter extends RecyclerView.Adapter<MessageBaseAdapter.ViewHolder> implements ItemClickListener {
 
@@ -65,7 +68,7 @@ public class MessageBaseAdapter extends RecyclerView.Adapter<MessageBaseAdapter.
         public final ImageView m_selectIcon;
         public final TextView m_tv_name;
         public final TextView m_tv_lastMessage;
-        public final TextView m_tv_time;
+        public final TextView m_tv_date;
         private ItemClickListener itemClickListener;
         public boolean m_itemSelected;
         public String m_id;
@@ -74,7 +77,7 @@ public class MessageBaseAdapter extends RecyclerView.Adapter<MessageBaseAdapter.
             super(view);
             m_tv_name           = view.findViewById(R.id.tv_nameHeadline);
             m_tv_lastMessage    = view.findViewById(R.id.tv_lastMessageText);
-            m_tv_time           = view.findViewById(R.id.tv_timeText);
+            m_tv_date           = view.findViewById(R.id.tv_timeText);
             m_image             = view.findViewById(R.id.iv_smallIcon);
             m_selectIcon        = view.findViewById(R.id.iv_selectIcon);
             m_itemSelected      = false;
@@ -86,7 +89,8 @@ public class MessageBaseAdapter extends RecyclerView.Adapter<MessageBaseAdapter.
         public void onBindViewHolder(final MessageItem message) {
             m_tv_name.setText(message.getPrivateName() + " " + message.getLastName());
             m_tv_lastMessage.setText(message.getLastMessage());
-            m_tv_time.setText(message.getTime());
+            String date = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(message.getTime());
+            m_tv_date.setText(date);
             m_id = message.getId();
             Glide.with(m_context)
                     .load(message.getPhoto())
