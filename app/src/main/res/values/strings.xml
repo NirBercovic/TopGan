@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Top Gan</string>
+    <string name="app_name">טופ-גן</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>

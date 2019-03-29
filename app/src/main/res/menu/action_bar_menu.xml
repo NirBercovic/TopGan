@@ -15,9 +15,11 @@
     </item>
 
     <item
-        android:id="@+id/number_selected"
+        android:id="@+id/send_messages"
+        android:visible="false"
+        android:icon="@drawable/messages_icon"
         app:showAsAction="ifRoom|withText"
-        android:title="">
+        android:title="Profile">
     </item>
 
 </menu>

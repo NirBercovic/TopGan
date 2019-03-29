@@ -42,6 +42,7 @@ public class MainScreenActivity extends AppCompatActivity {
     public MenuItem                     m_notificationsClick;
     public MenuItem                     m_amountSelected;
     private Toolbar                     m_mainToolbar;
+    public MenuItem                     m_messagesClick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,17 +66,16 @@ public class MainScreenActivity extends AppCompatActivity {
 
     public void setVisable(boolean visable) {
         m_notificationsClick.setVisible(visable);
+        m_messagesClick.setVisible(visable);
 
         if (visable) {
             m_mainToolbar.setTitle("");
             String sizeStr = m_selectedIds!=null ? String.valueOf(m_selectedIds.size()) : "";
-            m_amountSelected.setTitle(sizeStr);
-
+            m_mainToolbar.setTitle(sizeStr);
         }
         else
         {
-            m_mainToolbar.setTitle("Top Gan");
-            m_amountSelected.setTitle("");
+            m_mainToolbar.setTitle("טופ-גן");
         }
     }
 
@@ -83,7 +83,7 @@ public class MainScreenActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.action_bar_menu, menu);
         m_notificationsClick = menu.findItem(R.id.send_notifications);
-        m_amountSelected = menu.findItem(R.id.number_selected);
+        m_messagesClick = menu.findItem(R.id.send_messages);
         return true;
     }
 
