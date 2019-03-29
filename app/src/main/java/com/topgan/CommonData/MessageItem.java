@@ -1,22 +1,22 @@
 package com.topgan.CommonData;
 
+import java.util.Date;
+
 public class MessageItem {
     private String privateName;
     private String lastName;
     private String photo;
     private String lastMessage;
     private String id;
-    private String time;
+    private Date time;
 
-
-    public String getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(Date time) {
         this.time = time;
     }
-
 
 
     public String getId() {
