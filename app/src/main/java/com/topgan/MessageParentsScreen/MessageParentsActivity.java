@@ -44,6 +44,8 @@ public class MessageParentsActivity extends AppCompatActivity implements ItemCli
         Intent intent = getIntent();
         ids = intent.getStringArrayListExtra("CHILD_IDS");
 
+        Toast.makeText(MessageParentsActivity.this,"ids size = "+ids.size() , Toast.LENGTH_LONG).show();
+
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         btnSend = findViewById(R.id.btnSend);
         etMessage = findViewById(R.id.etMessage);
@@ -119,7 +121,7 @@ public class MessageParentsActivity extends AppCompatActivity implements ItemCli
 
     @Override
     public void onLongClick(View view, int position) {
-        btnSend.setVisibility(View.VISIBLE);
+        btnSend.setVisibility(View   .VISIBLE);
         //Toast.makeText(MessageParentsActivity.this, "onLongClick", Toast.LENGTH_SHORT).show();
     }
 
