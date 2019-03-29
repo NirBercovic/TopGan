@@ -7,37 +7,93 @@
     tools:context=".ChildDetailsScreen.ui.childdetails.tabs.ChildDetailsPersonalFragment">
 
     <TextView
+        android:id="@+id/tv_cd_first_name_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="שם פרטי:"
+        android:textSize="@dimen/details_text_size"
+        android:layout_marginTop="@dimen/child_details_personal_vertical_margin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
         android:id="@+id/tv_cd_first_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="@dimen/details_text_size"
+        app:layout_constraintTop_toTopOf="@+id/tv_cd_first_name_label"
+        app:layout_constraintStart_toEndOf="@+id/tv_cd_first_name_label" />
+
+    <TextView
+        android:id="@+id/tv_cd_last_name_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="שם משפחה:"
+        android:textSize="@dimen/details_text_size"
+        android:layout_marginTop="@dimen/child_details_personal_vertical_margin"
+        app:layout_constraintStart_toStartOf="@+id/tv_cd_first_name_label"
+        app:layout_constraintTop_toBottomOf="@+id/tv_cd_first_name_label" />
 
     <TextView
         android:id="@+id/tv_cd_last_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@+id/tv_cd_first_name"
-        app:layout_constraintTop_toBottomOf="@+id/tv_cd_first_name" />
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:textSize="@dimen/details_text_size"
+        app:layout_constraintTop_toTopOf="@+id/tv_cd_last_name_label"
+        app:layout_constraintStart_toEndOf="@+id/tv_cd_last_name_label" />
+
+    <TextView
+        android:id="@+id/tv_cd_birth_date_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="תאריך לידה:"
+        android:textSize="@dimen/details_text_size"
+        android:layout_marginTop="@dimen/child_details_personal_vertical_margin"
+        app:layout_constraintTop_toBottomOf="@+id/tv_cd_last_name_label"
+        app:layout_constraintStart_toStartOf="@+id/tv_cd_last_name_label"/>
 
     <TextView
         android:id="@+id/tv_cd_birth_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@+id/tv_cd_last_name"
-        app:layout_constraintTop_toBottomOf="@+id/tv_cd_last_name" />
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:textSize="@dimen/details_text_size"
+        app:layout_constraintTop_toTopOf="@+id/tv_cd_birth_date_label"
+        app:layout_constraintStart_toEndOf="@+id/tv_cd_birth_date_label" />
+
+    <TextView
+        android:id="@+id/tv_cd_gender_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="מין:"
+        android:textSize="@dimen/details_text_size"
+        android:layout_marginTop="@dimen/child_details_personal_vertical_margin"
+        app:layout_constraintTop_toBottomOf="@+id/tv_cd_birth_date_label"
+        app:layout_constraintStart_toStartOf="@+id/tv_cd_birth_date_label"/>
 
     <TextView
         android:id="@+id/tv_cd_gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@+id/tv_cd_birth_date"
-        app:layout_constraintTop_toBottomOf="@+id/tv_cd_birth_date" />
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:textSize="@dimen/details_text_size"
+        app:layout_constraintStart_toEndOf="@+id/tv_cd_gender_label"
+        app:layout_constraintTop_toTopOf="@+id/tv_cd_gender_label" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/fab_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>
