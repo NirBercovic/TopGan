@@ -59,7 +59,7 @@ public class MessageParentsActivity extends AppCompatActivity implements ItemCli
         etMessage = findViewById(R.id.etMessage);
 
         ibSend.setVisibility(View.INVISIBLE);
-        ibSend.setRotation(180);
+        //ibSend.setRotation(180);
 
        /* DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
                 DividerItemDecoration.VERTICAL);
