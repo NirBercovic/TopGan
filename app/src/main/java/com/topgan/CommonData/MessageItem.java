@@ -5,6 +5,7 @@ public class MessageItem {
     private String lastName;
     private String photo;
     private String lastMessage;
+    private String id;
 
     public String getId() {
         return id;
@@ -14,7 +15,7 @@ public class MessageItem {
         this.id = id;
     }
 
-    private String id;
+
 
     public String getPrivateName() {
         return privateName;

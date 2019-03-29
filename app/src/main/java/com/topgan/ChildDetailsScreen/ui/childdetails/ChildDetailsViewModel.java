@@ -12,6 +12,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.topgan.CommonData.Child;
+import com.topgan.Database.Callback;
 import com.topgan.Database.DatabaseHandler;
 
 public class ChildDetailsViewModel extends ViewModel {
@@ -30,23 +31,32 @@ public class ChildDetailsViewModel extends ViewModel {
 
     public void getChildDetails(String childId) {
         FirebaseFirestore db = DatabaseHandler.getInstance().getDb();
-        DocumentReference docRef = db.collection("Children").document(childId);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+
+        DatabaseHandler.getInstance().getDocData(db.collection("Children").document(childId), Child.class, new Callback<Child>() {
             @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document != null && document.exists()) {
-                        Child child = document.toObject(Child.class);
-                        ldChild.postValue(child);
-                        Log.d(TAG, "DocumentSnapshot data: " + child.toString());
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
+            public void onSuccess(Child child) {
+                ldChild.postValue(child);
             }
         });
+
+
+//        DocumentReference docRef = db.collection("Children").document(childId);
+//        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                if (task.isSuccessful()) {
+//                    DocumentSnapshot document = task.getResult();
+//                    if (document != null && document.exists()) {
+//                        Child child = document.toObject(Child.class);
+//                        ldChild.postValue(child);
+//                        Log.d(TAG, "DocumentSnapshot data: " + child.toString());
+//                    } else {
+//                        Log.d(TAG, "No such document");
+//                    }
+//                } else {
+//                    Log.d(TAG, "get failed with ", task.getException());
+//                }
+//            }
+//        });
     }
 }
