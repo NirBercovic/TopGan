@@ -1,12 +1,15 @@
 package com.topgan;
 
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.ListView;
-
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 import com.topgan.CommonData.MessageItem;
 import com.topgan.Database.DatabaseHandler;
 
@@ -19,10 +22,14 @@ public class MainScreenActivity extends AppCompatActivity {
     private RecyclerView    m_recyclerView;
     private RecyclerView.LayoutManager m_layoutManager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
+
+        Toolbar m_mainToolbar = findViewById(R.id.main_toolbar);
+        setSupportActionBar(m_mainToolbar);
 
         m_recyclerView = findViewById(R.id.rv_messages);
         m_layoutManager = new LinearLayoutManager(this);
@@ -35,8 +42,31 @@ public class MainScreenActivity extends AppCompatActivity {
         //DatabaseHandler.getTest();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.action_bar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int itemId = item.getItemId();
+
+        switch (itemId)
+        {
+            case R.id.select_all:
+                Toast.makeText(this, "selectAll", Toast.LENGTH_SHORT).show();
+                break;
+
+            default:
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     private void fetchMessages() {
-        m_dataSources = loadMovies();
+        m_dataSources = loadMessages();
 
         if (m_dataSources != null) {
             if (m_adapter == null) {
@@ -48,7 +78,8 @@ public class MainScreenActivity extends AppCompatActivity {
         }
     }
 
-    private ArrayList<MessageItem> loadMovies() {
+
+    private ArrayList<MessageItem> loadMessages() {
 
         ArrayList<MessageItem> messages = new ArrayList<>(3);
 

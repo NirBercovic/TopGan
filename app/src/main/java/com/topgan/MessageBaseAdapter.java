@@ -63,8 +63,7 @@ public class MessageBaseAdapter extends RecyclerView.Adapter<MessageBaseAdapter.
     }
 
     @Override
-    public void onLongClick(View view, int position) {
-    }
+    public void onLongClick(View view, int position) { }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
@@ -108,11 +107,6 @@ public class MessageBaseAdapter extends RecyclerView.Adapter<MessageBaseAdapter.
                 }
             });
 
-            /*if (!TextUtils.isEmpty(message.getSidePosterPath())) {
-                Picasso.get()
-                        .load(movie.getSidePosterPath())
-                        .into(m_image);
-            }*/
         }
 
         public void setItemClickListener(ItemClickListener onClickCallback) {
