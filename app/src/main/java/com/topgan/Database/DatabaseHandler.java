@@ -1,11 +1,13 @@
 package com.topgan.Database;
 
+import android.net.wifi.p2p.WifiP2pManager;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -45,6 +47,31 @@ public class DatabaseHandler {
 
     private void loadImage(ImageView imageView, String url) {
         StorageReference imagesRef = getStorageRef().child(url);
+    }
+
+    public <T> void getDocData(DocumentReference ref, final Class<T> resObj, final Callback callback) {
+        FirebaseFirestore db = DatabaseHandler.getInstance().getDb();
+        ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document != null && document.exists()) {
+                        Log.d("ROIGR1", document.getData().toString());
+                        T t = document.toObject(resObj);
+                        if (t != null) {
+                            callback.onSuccess(t);
+                        }
+
+                        Log.d(TAG, "DocumentSnapshot data: " + t.toString());
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
     }
 
     public void getTest() {

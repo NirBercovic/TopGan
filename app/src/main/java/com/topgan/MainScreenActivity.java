@@ -1,5 +1,6 @@
 package com.topgan;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +12,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+import android.util.Log;
+import android.widget.ListView;
+
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.topgan.CommonData.MessageArray;
 import com.topgan.CommonData.MessageItem;
+
+import com.topgan.ChildDetailsScreen.ChildDetailsActivity;
+import com.topgan.Database.Callback;
 import com.topgan.Database.DatabaseHandler;
 import com.topgan.MessageParentsScreen.MessageParentsActivity;
 
@@ -26,11 +35,13 @@ public class MainScreenActivity extends AppCompatActivity {
     MessageBaseAdapter      m_adapter;
     private RecyclerView    m_recyclerView;
     private RecyclerView.LayoutManager m_layoutManager;
+    private MainScreenActivity         m_context;
     public static Set<String> m_selectedIds = new HashSet<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        m_context = this;
         setContentView(R.layout.activity_main_screen);
 
         Toolbar m_mainToolbar = findViewById(R.id.main_toolbar);
@@ -83,61 +94,22 @@ public class MainScreenActivity extends AppCompatActivity {
     }
 
     private void fetchMessages() {
-        m_dataSources = loadMessages();
 
-        if (m_dataSources != null) {
-            if (m_adapter == null) {
-                m_adapter = new MessageBaseAdapter(this, m_dataSources);
-                m_recyclerView.setAdapter(m_adapter);
-            } else {
-                m_adapter.setItems(m_dataSources);
+        FirebaseFirestore db = DatabaseHandler.getInstance().getDb();
+        DatabaseHandler.getInstance().getDocData(db.collection("Messages").document("chat_mock"), MessageArray.class, new Callback<MessageArray>() {
+            @Override
+            public void onSuccess(MessageArray messages) {
+                m_dataSources = messages.getChats();
+                if (m_dataSources != null) {
+                    if (m_adapter == null) {
+                        m_adapter = new MessageBaseAdapter(m_context, m_dataSources);
+                        m_recyclerView.setAdapter(m_adapter);
+                    } else {
+                        m_adapter.setItems(m_dataSources);
+                    }
+                }
             }
-        }
-    }
-
-
-    private ArrayList<MessageItem> loadMessages() {
-
-        ArrayList<MessageItem> messages = new ArrayList<>(3);
-
-        MessageItem message1 = new MessageItem();
-        MessageItem message2 = new MessageItem();
-        MessageItem message3 = new MessageItem();
-        MessageItem message4 = new MessageItem();
-        MessageItem message5 = new MessageItem();
-
-        message1.setPrivateName("Nir");
-        message1.setLastName("Bercovitz");
-        message1.setLastMessage("Hey, what's up?");
-        message1.setId("test");
-
-        message2.setPrivateName("Roee");
-        message2.setLastName("Greenberg");
-        message2.setLastMessage("I forgot my coat");
-        message2.setId("feoije43");
-
-        message3.setPrivateName("Snir");
-        message3.setLastName("Ozery");
-        message3.setLastMessage("Hey, are you there?");
-        message3.setId("fko409f09");
-
-        message4.setPrivateName("Yael");
-        message4.setLastName("Shavit");
-        message4.setLastMessage("Good night");
-        message4.setId("fko409f09");
-
-        message5.setPrivateName("Avishai");
-        message5.setLastName("Peretz");
-        message5.setLastMessage("Good morning all");
-        message5.setId("gj849jg4jg");
-
-        messages.add(message1);
-        messages.add(message2);
-        messages.add(message3);
-        messages.add(message4);
-        messages.add(message5);
-
-        return messages;
+        });
     }
 
 }
