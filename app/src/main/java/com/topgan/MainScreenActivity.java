@@ -40,7 +40,6 @@ public class MainScreenActivity extends AppCompatActivity {
     private MainScreenActivity          m_context;
     public static Set<String>           m_selectedIds = new HashSet<>();
     public MenuItem                     m_notificationsClick;
-    public MenuItem                     m_amountSelected;
     private Toolbar                     m_mainToolbar;
     public MenuItem                     m_messagesClick;
 

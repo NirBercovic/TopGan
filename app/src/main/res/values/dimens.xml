@@ -5,4 +5,5 @@
     <dimen name="child_details_personal_vertical_margin">8dp</dimen>
     <dimen name="child_detail_fullname">30sp</dimen>
     <dimen name="tab_mergin_from_top">8dp</dimen>
+    <dimen name="edit_fab_icon">8dp</dimen>
 </resources>

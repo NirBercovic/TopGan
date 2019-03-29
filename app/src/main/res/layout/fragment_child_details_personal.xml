@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="8dp"
     tools:context=".ChildDetailsScreen.ui.childdetails.tabs.ChildDetailsPersonalFragment">
 
     <TextView
@@ -12,7 +13,6 @@
         android:layout_height="wrap_content"
         android:text="שם פרטי:"
         android:textSize="@dimen/details_text_size"
-        android:layout_marginTop="@dimen/child_details_personal_vertical_margin"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -89,9 +89,9 @@
     <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="@dimen/edit_fab_icon"
+        android:layout_marginRight="@dimen/edit_fab_icon"
+        android:layout_marginBottom="@dimen/edit_fab_icon"
         android:src="@drawable/fab_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
