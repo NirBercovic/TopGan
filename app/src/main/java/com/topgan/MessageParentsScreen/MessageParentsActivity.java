@@ -135,7 +135,7 @@ public class MessageParentsActivity extends AppCompatActivity implements ItemCli
             }
         }
 
-        Toast.makeText(MessageParentsActivity.this,remidersSelectedList.size()*ids.size()+ "הודעות נשלחו " , Toast.LENGTH_LONG).show();
+        Toast.makeText(MessageParentsActivity.this,remidersSelectedList.size()*ids.size()+ " הודעות נשלחו " , Toast.LENGTH_LONG).show();
         finish();
 
            /* try {
