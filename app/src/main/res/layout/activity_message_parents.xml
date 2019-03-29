@@ -12,13 +12,11 @@
 
     <ImageButton
         android:id="@+id/ibSend"
-        android:layout_width="50dp"
+        android:layout_width="40dp"
         android:layout_height="0dp"
         android:layout_gravity="left"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_weight="0.06"
+        android:layout_weight="0.08"
         android:onClick="SendClicked"
         android:src="@drawable/outline_send_black_18dp_large" />
 
@@ -27,25 +25,33 @@
         android:id="@+id/my_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.74"
+        android:layout_weight="0.67"
         android:background="#fafafa"
         android:scrollbars="vertical" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="15dp"
-        android:background="@color/primaryLightColor"
-        android:layout_weight="0.2">
+        android:padding="10dp"
+        android:layout_weight="0.15">
 
         <EditText
             android:id="@+id/etMessage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#fafafa"
-            android:hint="או לכתוב הודעה" />
+            android:hint="הוסף הודעה" />
 
     </LinearLayout>
-
+    <!-- Footer  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        >
+        <include
+            layout="@layout/footer">
+        </include>
+    </LinearLayout>
 
 </LinearLayout>
