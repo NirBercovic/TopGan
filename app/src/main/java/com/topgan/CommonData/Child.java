@@ -15,10 +15,10 @@ public class Child {
     private String parent2;
     private String parentPhone2;
     private String contact1;
-    private String contactPhpne1;
+    private String contactPhone1;
     private String relation1;
     private String contact2;
-    private String contactPhpne2;
+    private String contactPhone2;
     private String relation2;
     private String sensitive;
     private String comments;
@@ -27,7 +27,7 @@ public class Child {
     public Child() {
     }
 
-    public Child(String id, String firstName, String lastName, Date birthDate, String gender, String image, String parent1, String parentPhone1, String parent2, String parentPhone2, String contact1, String contactPhpne1, String relation1, String contact2, String contactPhpne2, String relation2, String sensitive, String comments) {
+    public Child(String id, String firstName, String lastName, Date birthDate, String gender, String image, String parent1, String parentPhone1, String parent2, String parentPhone2, String contact1, String contactPhone1, String relation1, String contact2, String contactPhone2, String relation2, String sensitive, String comments) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -39,10 +39,10 @@ public class Child {
         this.parent2 = parent2;
         this.parentPhone2 = parentPhone2;
         this.contact1 = contact1;
-        this.contactPhpne1 = contactPhpne1;
+        this.contactPhone1 = contactPhone1;
         this.relation1 = relation1;
         this.contact2 = contact2;
-        this.contactPhpne2 = contactPhpne2;
+        this.contactPhone2 = contactPhone2;
         this.relation2 = relation2;
         this.sensitive = sensitive;
         this.comments = comments;
@@ -136,12 +136,12 @@ public class Child {
         this.contact1 = contact1;
     }
 
-    public String getContactPhpne1() {
-        return contactPhpne1;
+    public String getContactPhone1() {
+        return contactPhone1;
     }
 
-    public void setContactPhpne1(String contactPhpne1) {
-        this.contactPhpne1 = contactPhpne1;
+    public void setContactPhone1(String contactPhone1) {
+        this.contactPhone1 = contactPhone1;
     }
 
     public String getRelation1() {
@@ -160,12 +160,12 @@ public class Child {
         this.contact2 = contact2;
     }
 
-    public String getContactPhpne2() {
-        return contactPhpne2;
+    public String getContactPhone2() {
+        return contactPhone2;
     }
 
-    public void setContactPhpne2(String contactPhpne2) {
-        this.contactPhpne2 = contactPhpne2;
+    public void setContactPhone2(String contactPhone2) {
+        this.contactPhone2 = contactPhone2;
     }
 
     public String getRelation2() {
