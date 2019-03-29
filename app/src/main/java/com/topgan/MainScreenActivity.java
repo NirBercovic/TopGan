@@ -11,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.util.Log;
 import android.widget.ListView;
@@ -31,12 +33,15 @@ import java.util.Set;
 
 public class MainScreenActivity extends AppCompatActivity {
 
-    ArrayList<MessageItem>  m_dataSources;
-    MessageBaseAdapter      m_adapter;
-    private RecyclerView    m_recyclerView;
-    private RecyclerView.LayoutManager m_layoutManager;
-    private MainScreenActivity         m_context;
-    public static Set<String> m_selectedIds = new HashSet<>();
+    ArrayList<MessageItem>              m_dataSources;
+    MessageBaseAdapter                  m_adapter;
+    private RecyclerView                m_recyclerView;
+    private RecyclerView.LayoutManager  m_layoutManager;
+    private MainScreenActivity          m_context;
+    public static Set<String>           m_selectedIds = new HashSet<>();
+    public MenuItem                     m_notificationsClick;
+    public MenuItem                     m_amountSelected;
+    private Toolbar                     m_mainToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +49,7 @@ public class MainScreenActivity extends AppCompatActivity {
         m_context = this;
         setContentView(R.layout.activity_main_screen);
 
-        Toolbar m_mainToolbar = findViewById(R.id.main_toolbar);
+        m_mainToolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(m_mainToolbar);
 
         m_recyclerView = findViewById(R.id.rv_messages);
@@ -55,12 +60,29 @@ public class MainScreenActivity extends AppCompatActivity {
         m_recyclerView.addItemDecoration(dividerItemDecoration);
 
         fetchMessages();
-        //DatabaseHandler.getTest();
+    }
+
+    public void setVisable(boolean visable) {
+        m_notificationsClick.setVisible(visable);
+
+        if (visable) {
+            m_mainToolbar.setTitle("");
+            String sizeStr = m_selectedIds!=null ? String.valueOf(m_selectedIds.size()) : "";
+            m_amountSelected.setTitle(sizeStr);
+
+        }
+        else
+        {
+            m_mainToolbar.setTitle("Top Gan");
+            m_amountSelected.setTitle("");
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.action_bar_menu, menu);
+        m_notificationsClick = menu.findItem(R.id.send_notifications);
+        m_amountSelected = menu.findItem(R.id.number_selected);
         return true;
     }
 
@@ -72,12 +94,16 @@ public class MainScreenActivity extends AppCompatActivity {
         switch (itemId)
         {
             case R.id.select_all:
-                Toast.makeText(this, "selectAll", Toast.LENGTH_SHORT).show();
+                m_adapter.chooseAllItems();
+
+                break;
+
+            case R.id.select_none:
+                m_adapter.chooseNoneItems();
 
                 break;
 
             case R.id.send_notifications:
-                Toast.makeText(this, "sendNotifications", Toast.LENGTH_SHORT).show();
 
                 Intent messageParentsIntent = (new Intent(this, MessageParentsActivity.class));
                 String[] objects = new String[m_selectedIds.size()];
