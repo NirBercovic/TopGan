@@ -42,6 +42,8 @@ public class MessageParentsActivity extends AppCompatActivity implements ItemCli
     ArrayList<Reminder> reminderList;
     ArrayList<String> ids;
 
+    boolean textEnter = false;
+
     private static List<Reminder> remidersSelectedList;
 
     @Override
@@ -59,17 +61,17 @@ public class MessageParentsActivity extends AppCompatActivity implements ItemCli
         etMessage = findViewById(R.id.etMessage);
 
         ibSend.setVisibility(View.INVISIBLE);
-        //ibSend.setRotation(180);
+        ibSend.setRotation(180);
 
        /* DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
                 DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);*/
 
         Reminder re0 = new Reminder("בגדי החלפה", R.drawable.reminder0);
-        Reminder re1 = new Reminder("נגמרו החיתולים", R.drawable.reminder1);
+        Reminder re1 = new Reminder("חיתולים", R.drawable.reminder1);
         Reminder re2 = new Reminder(" בקבוק חלב", R.drawable.reminder2);
-        Reminder re3 = new Reminder("סדין ביום ראשון", R.drawable.reminder3);
-        Reminder re4 = new Reminder("המוצץ נעלם", R.drawable.reminder4);
+        Reminder re3 = new Reminder("סדין", R.drawable.reminder3);
+        Reminder re4 = new Reminder("מוצץ", R.drawable.reminder4);
         Reminder re5 = new Reminder(" מגבונים", R.drawable.reminder5);
         Reminder re6 = new Reminder("בקבוק מים", R.drawable.reminder6);
         Reminder re7 = new Reminder("משחת החתלה", R.drawable.reminder7);
@@ -118,6 +120,7 @@ public class MessageParentsActivity extends AppCompatActivity implements ItemCli
             @Override
             public void afterTextChanged(Editable s) {
                 ibSend.setVisibility(View.VISIBLE);
+                textEnter = true;
             }
         });
 
@@ -137,40 +140,47 @@ public class MessageParentsActivity extends AppCompatActivity implements ItemCli
     public void SendClicked(View v) {
         remidersSelectedList = mAdapter.getReminderSelected();
 
-        //ArrayList<RemindMessage> remind = new ArrayList<>();
-        Map<String, Object> remind = new HashMap<>();
-        FirebaseFirestore db = DatabaseHandler.getInstance().getDb();
+        if (textEnter == true) {
+            Toast.makeText(MessageParentsActivity.this, "  הודעה כתובה נשלחה בהצלחה " , Toast.LENGTH_LONG).show();
+            finish();
+        } else {
 
-        int id = 0;
-        for (int i = 0; i < remidersSelectedList.size(); i++) {
-            for (int j = 0; j < ids.size(); j++) {
-                Log.e("Debug", " i = "+i+" ,title ="+remidersSelectedList.get(i).getReminderTitle()+" j: "+j+ ", id: "+ids.get(j));
-                //final RemindMessage mRemindMessage = new RemindMessage(remidersSelectedList.get(i).getReminderTitle(),ids.get(j));
-                //remind.add(mRemindMessage);
-                remind.put("child",ids.get(j));
-                remind.put("title",remidersSelectedList.get(i).getReminderTitle());
-                id++;
-                db.collection("Reminders").document("ID"+id)
-                        .set(remind)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.d("Debug", "DocumentSnapshot successfully written!");
-                                //Log.d("Debug", mRemindMessage.childId+ " "+mRemindMessage.reminderTitle);
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w("Debug", "Error writing document", e);
-                            }
-                        });
+
+            //ArrayList<RemindMessage> remind = new ArrayList<>();
+            Map<String, Object> remind = new HashMap<>();
+            FirebaseFirestore db = DatabaseHandler.getInstance().getDb();
+
+            int id = 0;
+            for (int i = 0; i < remidersSelectedList.size(); i++) {
+                for (int j = 0; j < ids.size(); j++) {
+                    Log.e("Debug", " i = " + i + " ,title =" + remidersSelectedList.get(i).getReminderTitle() + " j: " + j + ", id: " + ids.get(j));
+                    //final RemindMessage mRemindMessage = new RemindMessage(remidersSelectedList.get(i).getReminderTitle(),ids.get(j));
+                    //remind.add(mRemindMessage);
+                    remind.put("child", ids.get(j));
+                    remind.put("title", remidersSelectedList.get(i).getReminderTitle());
+                    id++;
+                    db.collection("Reminders").document("ID" + id)
+                            .set(remind)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d("Debug", "DocumentSnapshot successfully written!");
+                                    //Log.d("Debug", mRemindMessage.childId+ " "+mRemindMessage.reminderTitle);
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w("Debug", "Error writing document", e);
+                                }
+                            });
+                }
             }
+
+            Toast.makeText(MessageParentsActivity.this, remidersSelectedList.size() * ids.size() + " הודעות נשלחו בהצלחה ", Toast.LENGTH_LONG).show();
+            finish();
+
         }
-
-        Toast.makeText(MessageParentsActivity.this,remidersSelectedList.size()*ids.size()+ " הודעות נשלחו בהצלחה " , Toast.LENGTH_LONG).show();
-        finish();
-
 
     }
 
