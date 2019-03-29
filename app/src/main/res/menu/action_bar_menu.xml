@@ -9,15 +9,17 @@
     <item
         android:id="@+id/send_notifications"
         android:visible="false"
-        android:icon="@drawable/reminder0"
+        android:icon="@drawable/notification_bell"
         app:showAsAction="ifRoom|withText"
         android:title="Profile">
     </item>
 
     <item
-        android:id="@+id/number_selected"
+        android:id="@+id/send_messages"
+        android:visible="false"
+        android:icon="@drawable/messages_icon"
         app:showAsAction="ifRoom|withText"
-        android:title="">
+        android:title="Profile">
     </item>
 
 </menu>
