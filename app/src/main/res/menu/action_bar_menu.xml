@@ -9,7 +9,7 @@
     <item
         android:id="@+id/send_notifications"
         android:visible="false"
-        android:icon="@drawable/reminder0"
+        android:icon="@drawable/notification_bell"
         app:showAsAction="ifRoom|withText"
         android:title="Profile">
     </item>

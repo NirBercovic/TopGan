@@ -9,6 +9,7 @@
 
     <include
         android:id="@+id/toolbar"
+        android:background="@color/primaryDarkColor"
         layout="@layout/custom_toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

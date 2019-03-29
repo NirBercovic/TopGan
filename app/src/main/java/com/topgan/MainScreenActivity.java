@@ -2,7 +2,6 @@ package com.topgan;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -25,6 +24,7 @@ import com.topgan.ChildDetailsScreen.ChildDetailsActivity;
 import com.topgan.Database.Callback;
 import com.topgan.Database.DatabaseHandler;
 import com.topgan.MessageParentsScreen.MessageParentsActivity;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
