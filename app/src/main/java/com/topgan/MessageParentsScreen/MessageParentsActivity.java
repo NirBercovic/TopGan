@@ -65,15 +65,15 @@ public class MessageParentsActivity extends AppCompatActivity implements ItemCli
                 DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);*/
 
-        Reminder re0 = new Reminder("להביא בגדי החלפה", R.drawable.reminder0);
+        Reminder re0 = new Reminder("בגדי החלפה", R.drawable.reminder0);
         Reminder re1 = new Reminder("נגמרו החיתולים", R.drawable.reminder1);
-        Reminder re2 = new Reminder("להביא בקבוק חלב", R.drawable.reminder2);
-        Reminder re3 = new Reminder("להביא סדין ביום ראשון", R.drawable.reminder3);
+        Reminder re2 = new Reminder(" בקבוק חלב", R.drawable.reminder2);
+        Reminder re3 = new Reminder("סדין ביום ראשון", R.drawable.reminder3);
         Reminder re4 = new Reminder("המוצץ נעלם", R.drawable.reminder4);
-        Reminder re5 = new Reminder("יש להביא מגבונים", R.drawable.reminder5);
-        Reminder re6 = new Reminder("יש להביא בקבוק מים", R.drawable.reminder6);
-        Reminder re7 = new Reminder("נא להביא משחת החתלה", R.drawable.reminder7);
-        Reminder re8 = new Reminder("הילד אבא של שבת", R.drawable.reminder8);
+        Reminder re5 = new Reminder(" מגבונים", R.drawable.reminder5);
+        Reminder re6 = new Reminder("בקבוק מים", R.drawable.reminder6);
+        Reminder re7 = new Reminder("משחת החתלה", R.drawable.reminder7);
+        Reminder re8 = new Reminder("מקבלי שבת", R.drawable.reminder8);
         /*Reminder re9 = new Reminder("הילד ננשך",9);
         Reminder re10 = new Reminder("הילד לא הגיע היום",10);
         Reminder re11 = new Reminder("התנהג יפה ",11);*/
