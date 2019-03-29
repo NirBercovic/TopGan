@@ -18,21 +18,12 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.25"
-            android:drawableTop="@drawable/outline_more_vert_white_18dp_large"
+            android:drawableTop="@drawable/outline_event_note_white_18dp_large"
             android:gravity="center"
             android:textColor="#ffffff"
-            android:text="עוד"
+            android:text="הודעות"
             android:textSize="10sp" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.25"
-            android:drawableTop="@drawable/outline_insert_photo_white_18dp_large"
-            android:gravity="center"
-            android:textColor="#ffffff"
-            android:text="גלריה"
-            android:textSize="10sp" />
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -47,11 +38,23 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.25"
-            android:drawableTop="@drawable/outline_event_note_white_18dp_large"
+            android:drawableTop="@drawable/outline_insert_photo_white_18dp_large"
             android:gravity="center"
             android:textColor="#ffffff"
-            android:text="הודעות"
+            android:text="גלריה"
             android:textSize="10sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:drawableTop="@drawable/outline_more_vert_white_18dp_large"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:text="עוד"
+            android:textSize="10sp" />
+
+
     </LinearLayout>
 
 </LinearLayout>
