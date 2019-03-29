@@ -24,7 +24,7 @@
             android:layout_marginLeft="20dp"
             android:textSize="20sp"
             android:textColor="#ffffff"
-            android:text="התראות"/>
+            android:text="תזכורות"/>
 
         <ImageButton
             android:id="@+id/ibSend"
