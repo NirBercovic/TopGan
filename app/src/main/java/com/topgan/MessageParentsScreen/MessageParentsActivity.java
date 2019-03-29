@@ -36,7 +36,7 @@ public class MessageParentsActivity extends AppCompatActivity implements ItemCli
     private ReminderAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    private ImageButton btnSend;
+    private ImageButton ibSend;
     private EditText etMessage;
 
     ArrayList<Reminder> reminderList;
@@ -52,13 +52,14 @@ public class MessageParentsActivity extends AppCompatActivity implements ItemCli
         Intent intent = getIntent();
         ids = intent.getStringArrayListExtra("CHILD_IDS");
 
-        Toast.makeText(MessageParentsActivity.this,"ids size = "+ids.size() , Toast.LENGTH_LONG).show();
+        //Toast.makeText(MessageParentsActivity.this,"ids size = "+ids.size() , Toast.LENGTH_LONG).show();
 
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-        btnSend = findViewById(R.id.btnSend);
+        ibSend = findViewById(R.id.ibSend);
         etMessage = findViewById(R.id.etMessage);
 
-        btnSend.setVisibility(View.INVISIBLE);
+        ibSend.setVisibility(View.INVISIBLE);
+        ibSend.setRotation(180);
 
        /* DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
                 DividerItemDecoration.VERTICAL);
@@ -116,7 +117,7 @@ public class MessageParentsActivity extends AppCompatActivity implements ItemCli
 
             @Override
             public void afterTextChanged(Editable s) {
-                btnSend.setVisibility(View.VISIBLE);
+                ibSend.setVisibility(View.VISIBLE);
             }
         });
 
@@ -129,55 +130,48 @@ public class MessageParentsActivity extends AppCompatActivity implements ItemCli
 
     @Override
     public void onLongClick(View view, int position) {
-        btnSend.setVisibility(View   .VISIBLE);
+        ibSend.setVisibility(View   .VISIBLE);
         //Toast.makeText(MessageParentsActivity.this, "onLongClick", Toast.LENGTH_SHORT).show();
     }
 
     public void SendClicked(View v) {
         remidersSelectedList = mAdapter.getReminderSelected();
 
-        Map<String, Object> city = new HashMap<>();
+        //ArrayList<RemindMessage> remind = new ArrayList<>();
+        Map<String, Object> remind = new HashMap<>();
+        FirebaseFirestore db = DatabaseHandler.getInstance().getDb();
 
+        int id = 0;
         for (int i = 0; i < remidersSelectedList.size(); i++) {
-            for (int j = 0; i < ids.size(); i++) {
-                city.put("remidersSelectedList.get(i).getReminderTitle()", ids.get(j));
+            for (int j = 0; j < ids.size(); j++) {
                 Log.e("Debug", " i = "+i+" ,title ="+remidersSelectedList.get(i).getReminderTitle()+" j: "+j+ ", id: "+ids.get(j));
-
+                //final RemindMessage mRemindMessage = new RemindMessage(remidersSelectedList.get(i).getReminderTitle(),ids.get(j));
+                //remind.add(mRemindMessage);
+                remind.put("child",ids.get(j));
+                remind.put("title",remidersSelectedList.get(i).getReminderTitle());
+                id++;
+                db.collection("Reminders").document("ID"+id)
+                        .set(remind)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.d("Debug", "DocumentSnapshot successfully written!");
+                                //Log.d("Debug", mRemindMessage.childId+ " "+mRemindMessage.reminderTitle);
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w("Debug", "Error writing document", e);
+                            }
+                        });
             }
         }
 
-//        FirebaseFirestore db = DatabaseHandler.getInstance().getDb();
-//        db.collection("cities").document("LA")
-//                .set(city)
-//                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void aVoid) {
-//                        Log.d("Debug", "DocumentSnapshot successfully written!");
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.w("Debug", "Error writing document", e);
-//                    }
-//                });
-
-        Toast.makeText(MessageParentsActivity.this,remidersSelectedList.size()*ids.size()+ " הודעות נשלחו " , Toast.LENGTH_LONG).show();
+        Toast.makeText(MessageParentsActivity.this,remidersSelectedList.size()*ids.size()+ " הודעות נשלחו בהצלחה " , Toast.LENGTH_LONG).show();
         finish();
 
-           /* try {
-                String text = "הודעה לילד מהגננת" + "\r\n" +
-                        remidersSelectedList.get(i).getReminderTitle()+ "\r\n" +
-                        "נשלח באמצעות אפליקציית טופ-גן " ;
-                String toNumber = "972542331750";
 
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("http://api.whatsapp.com/send?phone="+toNumber +"&text="+text));
-                startActivity(intent);
-            }
-            catch (Exception e){
-                e.printStackTrace();
-            } */
     }
 
 }

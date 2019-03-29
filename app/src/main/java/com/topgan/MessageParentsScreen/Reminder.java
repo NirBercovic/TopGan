@@ -5,9 +5,11 @@ public class Reminder {
     String reminderTitle;
     int photoId;
 
+
     public Reminder(String reminderTitle, int photoId) {
         this.reminderTitle = reminderTitle;
         this.photoId = photoId;
+
     }
 
     public String getReminderTitle() {

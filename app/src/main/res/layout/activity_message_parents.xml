@@ -11,16 +11,15 @@
     tools:context=".MessageParentsScreen.MessageParentsActivity">
 
     <ImageButton
-        android:id="@+id/btnSend"
+        android:id="@+id/ibSend"
         android:layout_width="50dp"
-        android:onClick="SendClicked"
+        android:layout_height="wrap_content"
         android:layout_gravity="left"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_marginLeft="20dp"
-        android:layout_height="0dp"
         android:layout_weight="0.06"
-        android:background="#ffffff"
+        android:onClick="SendClicked"
         android:src="@drawable/outline_send_black_18dp_large" />
 
     <!-- A RecyclerView with some commonly used attributes -->
