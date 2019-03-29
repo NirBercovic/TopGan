@@ -12,6 +12,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.topgan.ItemClickListener;
@@ -27,10 +28,11 @@ public class MessageParentsActivity extends AppCompatActivity implements ItemCli
     private ReminderAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    private Button btnSend;
+    private ImageButton btnSend;
     private EditText etMessage;
 
     ArrayList<Reminder> reminderList;
+    ArrayList<String> ids;
 
     private static List<Reminder> remidersSelectedList;
 
@@ -38,6 +40,9 @@ public class MessageParentsActivity extends AppCompatActivity implements ItemCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_parents);
+
+        Intent intent = getIntent();
+        ids = intent.getStringArrayListExtra("CHILD_IDS");
 
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         btnSend = findViewById(R.id.btnSend);
@@ -123,12 +128,12 @@ public class MessageParentsActivity extends AppCompatActivity implements ItemCli
 
 
         for (int i = 0; i < remidersSelectedList.size(); i++) {
-            for (int j = 0; i < 3; i++) {
+            for (int j = 0; i < ids.size(); i++) {
                 // ??
             }
         }
 
-        Toast.makeText(MessageParentsActivity.this,remidersSelectedList.size()*3+ "הודעות נשלחו " , Toast.LENGTH_LONG).show();
+        Toast.makeText(MessageParentsActivity.this,remidersSelectedList.size()*ids.size()+ "הודעות נשלחו " , Toast.LENGTH_LONG).show();
         finish();
 
            /* try {
@@ -144,9 +149,7 @@ public class MessageParentsActivity extends AppCompatActivity implements ItemCli
             catch (Exception e){
                 e.printStackTrace();
             } */
-
     }
-
 
 }
 
