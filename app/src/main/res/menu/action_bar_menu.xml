@@ -10,16 +10,14 @@
         android:id="@+id/send_notifications"
         android:visible="false"
         android:icon="@drawable/notification_bell"
-        app:showAsAction="ifRoom|withText"
-        android:title="Profile">
+        app:showAsAction="ifRoom|withText">
     </item>
 
     <item
         android:id="@+id/send_messages"
         android:visible="false"
         android:icon="@drawable/messages_icon"
-        app:showAsAction="ifRoom|withText"
-        android:title="Profile">
+        app:showAsAction="ifRoom|withText">
     </item>
 
 </menu>

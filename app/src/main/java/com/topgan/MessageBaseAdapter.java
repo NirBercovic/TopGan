@@ -70,7 +70,7 @@ public class MessageBaseAdapter extends RecyclerView.Adapter<MessageBaseAdapter.
 
     @Override
     public void onClick(View view, int position) {
-        Toast.makeText(m_context, "onClick", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
