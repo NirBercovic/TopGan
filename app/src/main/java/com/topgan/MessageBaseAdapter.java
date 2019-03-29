@@ -10,22 +10,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.bumptech.glide.Glide;
 import com.topgan.ChildDetailsScreen.ChildDetailsActivity;
 import com.topgan.CommonData.MessageItem;
-
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-
 
 public class MessageBaseAdapter extends RecyclerView.Adapter<MessageBaseAdapter.ViewHolder> implements ItemClickListener {
 
     private LayoutInflater m_inflater;
     private ArrayList<MessageItem> m_dataSource;
     private MainScreenActivity m_context;
-
-
+    
     public MessageBaseAdapter(MainScreenActivity context, ArrayList<MessageItem> items)
     {
         m_dataSource            = items;
@@ -91,8 +86,11 @@ public class MessageBaseAdapter extends RecyclerView.Adapter<MessageBaseAdapter.
         public void onBindViewHolder(final MessageItem message) {
             m_tv_name.setText(message.getPrivateName() + " " + message.getLastName());
             m_tv_lastMessage.setText(message.getLastMessage());
-            m_tv_time.setText("2222");
+            m_tv_time.setText(message.getTime());
             m_id = message.getId();
+            Glide.with(m_context)
+                    .load(message.getPhoto())
+                    .into(m_image);
 
             m_selectIcon.setImageResource(R.drawable.select_icon);
             m_selectIcon.setVisibility(View.INVISIBLE);
@@ -105,7 +103,6 @@ public class MessageBaseAdapter extends RecyclerView.Adapter<MessageBaseAdapter.
                     m_context.startActivity(childDetailsIntent);
                 }
             });
-
         }
 
         public void setItemClickListener(ItemClickListener onClickCallback) {

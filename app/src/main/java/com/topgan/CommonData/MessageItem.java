@@ -6,6 +6,18 @@ public class MessageItem {
     private String photo;
     private String lastMessage;
     private String id;
+    private String time;
+
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+
 
     public String getId() {
         return id;
