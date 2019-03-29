@@ -24,14 +24,13 @@ public class MessageBaseAdapter extends RecyclerView.Adapter<MessageBaseAdapter.
     private LayoutInflater m_inflater;
     private ArrayList<MessageItem> m_dataSource;
     private MainScreenActivity m_context;
-    private static Set<String> m_selectedIds;
+
 
     public MessageBaseAdapter(MainScreenActivity context, ArrayList<MessageItem> items)
     {
         m_dataSource            = items;
         m_inflater              = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         m_context               = context;
-        m_selectedIds           = new HashSet<>();
     }
 
     public void setItems(ArrayList<MessageItem> items) {
@@ -122,11 +121,11 @@ public class MessageBaseAdapter extends RecyclerView.Adapter<MessageBaseAdapter.
         public boolean onLongClick(View v) {
             if (m_itemSelected) {
                 m_selectIcon.setVisibility(View.INVISIBLE);
-                m_selectedIds.remove(m_id);
+                m_context.m_selectedIds.remove(m_id);
             }
             else{
                 m_selectIcon.setVisibility(View.VISIBLE);
-                m_selectedIds.add(m_id);
+                m_context.m_selectedIds.add(m_id);
             }
 
             m_itemSelected = !m_itemSelected;

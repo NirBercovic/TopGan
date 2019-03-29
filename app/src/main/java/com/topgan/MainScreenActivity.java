@@ -1,5 +1,6 @@
 package com.topgan;
 
+import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,8 +13,12 @@ import android.view.MenuItem;
 import android.widget.Toast;
 import com.topgan.CommonData.MessageItem;
 import com.topgan.Database.DatabaseHandler;
+import com.topgan.MessageParentsScreen.MessageParentsActivity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class MainScreenActivity extends AppCompatActivity {
 
@@ -21,7 +26,7 @@ public class MainScreenActivity extends AppCompatActivity {
     MessageBaseAdapter      m_adapter;
     private RecyclerView    m_recyclerView;
     private RecyclerView.LayoutManager m_layoutManager;
-
+    public static Set<String> m_selectedIds = new HashSet<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +62,20 @@ public class MainScreenActivity extends AppCompatActivity {
         {
             case R.id.select_all:
                 Toast.makeText(this, "selectAll", Toast.LENGTH_SHORT).show();
+
                 break;
 
+            case R.id.send_notifications:
+                Toast.makeText(this, "sendNotifications", Toast.LENGTH_SHORT).show();
+
+                Intent messageParentsIntent = (new Intent(this, MessageParentsActivity.class));
+                String[] objects = new String[m_selectedIds.size()];
+                m_selectedIds.toArray(objects);
+                final ArrayList<String> list = new ArrayList<>(Arrays.asList(objects));
+                messageParentsIntent.putStringArrayListExtra("CHILD_IDS",list);
+                startActivity(messageParentsIntent);
+
+                break;
             default:
         }
 
