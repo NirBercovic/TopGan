@@ -2,6 +2,7 @@ package com.topgan.MessageParentsScreen;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -9,17 +10,24 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.topgan.Database.DatabaseHandler;
 import com.topgan.ItemClickListener;
 import com.topgan.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class MessageParentsActivity extends AppCompatActivity implements ItemClickListener {
@@ -62,8 +70,8 @@ public class MessageParentsActivity extends AppCompatActivity implements ItemCli
         Reminder re3 = new Reminder("להביא סדין ביום ראשון", R.drawable.reminder3);
         Reminder re4 = new Reminder("המוצץ נעלם", R.drawable.reminder4);
         Reminder re5 = new Reminder("יש להביא מגבונים", R.drawable.reminder5);
-        Reminder re6 = new Reminder("הילד הרביץ", R.drawable.reminder6);
-        Reminder re7 = new Reminder("הילד חולה", R.drawable.reminder7);
+        Reminder re6 = new Reminder("יש להביא בקבוק מים", R.drawable.reminder6);
+        Reminder re7 = new Reminder("נא להביא משחת החתלה", R.drawable.reminder7);
         Reminder re8 = new Reminder("הילד אבא של שבת", R.drawable.reminder8);
         /*Reminder re9 = new Reminder("הילד ננשך",9);
         Reminder re10 = new Reminder("הילד לא הגיע היום",10);
@@ -128,12 +136,31 @@ public class MessageParentsActivity extends AppCompatActivity implements ItemCli
     public void SendClicked(View v) {
         remidersSelectedList = mAdapter.getReminderSelected();
 
+        Map<String, Object> city = new HashMap<>();
 
         for (int i = 0; i < remidersSelectedList.size(); i++) {
             for (int j = 0; i < ids.size(); i++) {
-                // ??
+                city.put("remidersSelectedList.get(i).getReminderTitle()", ids.get(j));
+                Log.e("Debug", " i = "+i+" ,title ="+remidersSelectedList.get(i).getReminderTitle()+" j: "+j+ ", id: "+ids.get(j));
+
             }
         }
+
+//        FirebaseFirestore db = DatabaseHandler.getInstance().getDb();
+//        db.collection("cities").document("LA")
+//                .set(city)
+//                .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void aVoid) {
+//                        Log.d("Debug", "DocumentSnapshot successfully written!");
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.w("Debug", "Error writing document", e);
+//                    }
+//                });
 
         Toast.makeText(MessageParentsActivity.this,remidersSelectedList.size()*ids.size()+ " הודעות נשלחו " , Toast.LENGTH_LONG).show();
         finish();
