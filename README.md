@@ -1,5 +1,5 @@
 # TopGan <img src="https://github.com/NirBercovic/TopGan/blob/master/app/src/main/res/drawable/top_gan_logo.png" width="40" height="40"/>
-An application helping kindergarten teachers to manage the communication in front of the kids parents by notifications, messages and more. This application is a result a 24h Hackathon held by Android Academy TLV. 
+An Android application helping kindergarten teachers to manage the communication in front of the kids parents by notifications, messages and more. This application is a result a 24h Hackathon held by Android Academy TLV. 
 
 Technologies and libraries used:
 - RecyclerView.
